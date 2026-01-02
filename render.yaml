@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cv-analyzer-backend
+    env: python
+    region: frankfurt
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && gunicorn app.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:10000"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./cv_analysis.db
+      - key: HF_TOKEN
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: FAST_MODE
+        value: "true"
+    healthCheckPath: /health
