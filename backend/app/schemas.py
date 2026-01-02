@@ -101,7 +101,7 @@ class AnalysisResponse(BaseModel):
     created_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 class AnalysisCreate(BaseModel):
     analysis_id: int
@@ -113,7 +113,7 @@ class AnalysisListItem(BaseModel):
     created_at: datetime
     
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 class BulkUploadResponse(BaseModel):
     analyses: List[AnalysisListItem]
