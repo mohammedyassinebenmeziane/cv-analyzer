@@ -7,5 +7,8 @@ cmds = [
   "cd backend && /opt/venv/bin/pip install -r requirements.txt"
 ]
 
+[phases.build]
+cmds = ["echo 'Skipping build phase'"]
+
 [start]
 cmd = "cd backend && /opt/venv/bin/gunicorn app.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}"
