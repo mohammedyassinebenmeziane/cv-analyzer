@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip"]
+nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["cd backend && python -m pip install -r requirements.txt"]
+cmds = ["cd backend && python3 -m ensurepip && python3 -m pip install -r requirements.txt"]
 
 [start]
-cmd = "cd backend && gunicorn app.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}"
+cmd = "cd backend && python3 -m gunicorn app.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}"
